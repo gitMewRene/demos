@@ -1,30 +1,30 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const CardBack = ({featured, image, title, tags, link, description}) => {
-  const style = (featured)? "ribbon-feature" : "";
+const CardBack = ({id, featured, image, title, tags, link, description}) => {
+  
   //insstructions did not specify whether the cta was a link or button
   const cta = "Learn More >";
   return (
-    <div className="card-back position-absolute card h-100 rounded-0 border border-dark">
-      <div className={`card-header ${style}`}/>
+    <div className="card-back rounded-0 border border-dark">
         <img className="card-img-top rounded-0 img-reversed" src={image} alt="" />
-      <div className="card-body p-1">
-        <title>{title}</title>
-        <div className="d-flex flex-wrap bg-default" >
+      <div className="card-body p-2">
+        <h3>{id}</h3>
+        <div className="d-flex flex-wrap bg-default p-2" >
         {
           tags.map( o =>
-            <span key={o} className="badge badge-dark">{o}</span>
+            <span key={o} className="badge p-1 m-1 badge-dark">{o}</span>
           )
         }
         </div>
-        <a href={link} className="text-uppercase float-right">{cta}</a>
       </div>
+        <a href={link} className="text-uppercase cta">{cta}</a>
     </div>
   );
 }
 
 CardBack.propTypes = {
+  id:PropTypes.string,
   image:PropTypes.string,
   featured:PropTypes.number,
   title:PropTypes.string,
@@ -34,6 +34,7 @@ CardBack.propTypes = {
 }
 
 CardBack.defaultProps = {
+  id:'',
   image:'',
   featured:0,
   title:'',

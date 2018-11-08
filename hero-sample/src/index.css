@@ -12,7 +12,12 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
-
+.cta {
+  right:0.25rem;
+  bottom:0.25rem;
+  background:#fff;
+  position: absolute;
+}
 .ribbon {
   position: absolute;
   right: -5px; top: -5px;
@@ -59,6 +64,6 @@ code {
 .blue span::before {border-left-color: #1e5799; border-top-color: #1e5799;}
 .blue span::after {border-right-color: #1e5799; border-top-color: #1e5799;}
 
-div > div.truncate, .card-body.text > div{
+div > div.truncate, div.text > div{
   text-align:left;
 }

@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  perspective: 600px;
 }
 
 .App-logo {
@@ -30,3 +31,97 @@
     transform: rotate(360deg);
   }
 }
+.data-card {
+  transition: transform 1s;
+  transform-style: preserve-3d;
+  cursor: pointer;
+  position: relative;
+  overflow:hidden;
+}
+.card-front{
+  backface-visibility: hidden;
+}
+.card-back{
+  transform: rotateY(180deg);
+}
+.card-flip{
+
+  transform: rotateY(180deg);
+}
+.container {
+	margin: 50px;
+}
+
+/*-------- flex container --------*/
+.flex-container {
+	display: flex;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -webkit-box;
+	display: -webkit-flex;
+	justify-content: space-around;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	flex-flow: row wrap;
+	-webkit-flex-flow: row wrap;
+	position: relative;
+}
+.flex-item {
+	min-height: 430px !important;
+	padding: 0;
+	width: 100%;
+	position: relative;
+}
+.flex-item-inner {
+	display: flex;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -webkit-box;
+	display: -webkit-flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	height: 210px;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+}
+
+/*-------- cards --------*/
+.card-front,
+.card-back {
+	position: absolute;
+  display:block;
+  height:100%;
+	margin: 5px 0 0 0;
+	-webkit-backface-visibility: hidden;
+	backface-visibility: hidden;
+	-webkit-transition: -webkit-transform 0.3s;
+	transition: transform 0.3s;
+	justify-content: flex-end;
+}
+.card-back {
+  
+	-webkit-transform: rotateY(-180deg);
+	transform: rotateY(-180deg);
+}
+.img-reversed{
+	-webkit-transform: rotateY(-180deg);
+  transform: rotateY(-180deg);
+  opacity: 0.3;
+}
+/*-------- cards / flip effect --------*/
+.flex-item:hover .card-front {
+	-webkit-transform: rotateY(-180deg);
+	transform: rotateY(-180deg);
+}
+.flex-item:hover .card-back {
+	-webkit-transform: rotateY(0);
+	transform: rotateY(0);
+}
+
+
+
+
+
+

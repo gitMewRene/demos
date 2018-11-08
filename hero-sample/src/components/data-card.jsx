@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import Flipper from 'react-card-flip';
 
 import Front from '../layout/card-front';
 import Back from '../layout/card-back';
@@ -24,15 +23,15 @@ class DataCard extends Component {
 
   render(){
     return (
-    <div className="data-card col-6 col-md-4 my-2">
-    <Front {...this.props} onAction={this.flip} key="front"/>
-    <Back {...this.props} onAction={this.flip} key="back"/>
+    <div className="data-card flex-item col-6 col-md-4">
+    <Front {...this.props.data} onAction={this.flip} key="front"/>
+    <Back {...this.props.data} onAction={this.flip} key="back"/>
     </div>
     );
   }
 }
 DataCard.propTypes = {
-  data:PropTypes.object,
+  data:PropTypes.object
 }
 
 export default DataCard;

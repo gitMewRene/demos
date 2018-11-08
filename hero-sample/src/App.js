@@ -56,7 +56,7 @@ class App extends Component {
           {
             (this.state.cardList.length > 0)?
             this.state.cardList.map(
-              o => <DataCard {...o} key={o.id}/>
+              o => <DataCard data={o} key={o.id}/>
             ):
             <div className="loading"> One Moment.. </div>
           }
