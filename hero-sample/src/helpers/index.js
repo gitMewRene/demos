@@ -53,3 +53,12 @@ export const getAvailableTags = ( data = []) => {
     {...o, ...availableTags(key.tags)}
   ),{});
 }
+
+export const filteredCards = (activeKeys = '', cards = []) => {
+  return cards;
+}
+
+export const setActiveTags = (activeKeys = '', tags = []) => {
+  
+  return tags;
+}

@@ -4,7 +4,7 @@ import Truncate from 'react-text-truncate';
 const CardFront = ({featured, image, title, tags, link, description}) => {
 
   return (
-    <div className="card h-100 rounded-0 border border-dark">
+    <div className="card-front position-absolute card h-100 rounded-0 border border-dark">
     {
       (featured)?
     <div className="ribbon blue"><span>Featured</span></div>:

@@ -24,8 +24,9 @@ class DataCard extends Component {
 
   render(){
     return (
-    <div className="col-6 col-md-4 my-2">
-      <Front {...this.props} onAction={this.flip} key="front"/>
+    <div className="data-card col-6 col-md-4 my-2">
+    <Front {...this.props} onAction={this.flip} key="front"/>
+    <Back {...this.props} onAction={this.flip} key="back"/>
     </div>
     );
   }

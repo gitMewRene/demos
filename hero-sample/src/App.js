@@ -4,7 +4,7 @@ import './App.css';
 
 import 'bootstrap/dist/css/bootstrap.css';
 import ResponsiveFilter from './components/filter';
-import {getAvailableTags} from './helpers/';
+import {getAvailableTags, filteredCards, setActiveTags} from './helpers/';
 import DataCard from './components/data-card';
 
 class App extends Component {
@@ -22,10 +22,13 @@ class App extends Component {
       fetch(this.props.json)
       .then(r => r.json())
       .then(i => { 
+        const tags = Object.keys(getAvailableTags(i.cards));
         this.setState({ 
           cardList:i.cards,
+          cards:i.cards,//could make you a class prop
           //removes the counts this way but quick and dirty
-          filterOptions:Object.keys(getAvailableTags(i.cards)) 
+          tags,
+          filterOptions:tags
         })
       })
 
@@ -34,7 +37,14 @@ class App extends Component {
 
   onFilterUpdate = event => {
     if(event.value){
-    //  this.setState({filterOptions:});
+
+      
+      //update list with filterCard result
+      const result = filteredCards(event.value, this.state.cards)
+      //might want an additional prop to indicate selected state
+      this.setState({
+        cardList:result,
+        filterOptions:setActiveTags(event.value, this.state.tags)});
     }
   }
 

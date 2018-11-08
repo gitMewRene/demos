@@ -1,3 +1,18 @@
+##Hero Digital Code Challenge
+
+NOTES: 
+  images delivered are not uniform in size and would require additional css to perhaps force a baseline image position and overflow:hidden excess image negatively on the y-axis.
+
+  multiline truncation is tricky beyond using -webkit-clamp (not cross browser)
+  and all require a line limit to be defined. 
+ due to this you cannot show unlimited text and maintain uniform heights.
+ clamp the line, add ellipsis with a show more button would be an option.
+ 
+  filter by tag options
+  in this example there are 40 unique tags, that is a lot to present to the user at once. i opted to show the most popular tags only, a show more link to accordian all
+  tag selectors would be an option.
+  
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

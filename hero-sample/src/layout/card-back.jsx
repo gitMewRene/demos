@@ -6,7 +6,7 @@ const CardBack = ({featured, image, title, tags, link, description}) => {
   //insstructions did not specify whether the cta was a link or button
   const cta = "Learn More >";
   return (
-    <div className="card h-100 rounded-0 border border-dark">
+    <div className="card-back position-absolute card h-100 rounded-0 border border-dark">
       <div className={`card-header ${style}`}/>
         <img className="card-img-top rounded-0 img-reversed" src={image} alt="" />
       <div className="card-body p-1">
