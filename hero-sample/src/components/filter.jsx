@@ -8,12 +8,13 @@ import FilterMobile from '../layout/filter-mobile';
  * a key to null the undesired one from render
  * @param {*} props 
  */
-const ResponsiveFilter = props => {
-  if(props.mobile) return <FilterMobile {...props} />;
-  return <FilterDesktop {...props}/>;
+const ResponsiveFilter = ({onChange, mobile, options}) => {
+
+  if(mobile) return <FilterMobile options={options} onChange={onChange} />;
+  return <FilterDesktop options={options} onChange={onChange} />;
 }
 ResponsiveFilter.propTypes = {
-  mobile:PropTypes.boolean,
+  mobile:PropTypes.bool,
   options:PropTypes.object,
   onChange:PropTypes.func
 };

@@ -54,8 +54,18 @@ export const getAvailableTags = ( data = []) => {
   ),{});
 }
 
-export const filteredCards = (activeKeys = '', cards = []) => {
-  return cards;
+export const filteredCards = (activeKeys = [], cards = []) => {
+  return cards.filter( c => {
+      const strings = c.tags.join();
+      //activeKeys is likely to be smaller than iterating through all tags
+      
+      //reduce supports AND query
+      return activeKeys.reduce((o, key ) => {
+        
+        return strings.includes(key)
+      }, false )
+
+})
 }
 
 export const setActiveTags = (activeKeys = '', tags = []) => {
