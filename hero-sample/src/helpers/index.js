@@ -92,3 +92,14 @@ export const isSelected = (q = {}) => {
 export const isMobile = () => {
   return window.innerWidth < 767;
 }
+
+export default {
+  availableTags,
+  createToggleTree,
+  filterByToggleState,
+  filterCardsByTags,
+  getAvailableTags,
+  getTags,
+  isSelected,
+  toggleElement
+}
