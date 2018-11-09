@@ -61,11 +61,11 @@ class App extends Component {
   
   render() {
     return (
-      <div className="App container-fluid">
+      <div className="App ">
       <div className="row">
         <ResponsiveFilter onChange={this.onFilterUpdate} options={this.state.tags}/>
       </div>
-      <div className="container-fluid">
+      <div className="">
         <div className="d-flex flex-wrap">
           {
             (this.state.cardList.length > 0)?
