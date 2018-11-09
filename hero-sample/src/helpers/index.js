@@ -88,3 +88,7 @@ export const isSelected = (q = {}) => {
   }
   return false;
 }
+
+export const isMobile = () => {
+  return window.innerWidth < 767;
+}

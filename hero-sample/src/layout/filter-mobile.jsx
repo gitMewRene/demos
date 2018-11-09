@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {filterByToggleState} from '../helpers';
 import classnames from 'classnames';
 //BS4 requires popper and jquery still =< and silly for one dropdown
 class FilterMobile extends Component{
