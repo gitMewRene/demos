@@ -1,16 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classnames from 'classnames';
 
 const FilterDesktop = ({options, onChange}) => {
   
   const formatted = event => {
     onChange({
-      value:event.target.name
+      value:event.target.value
     });
   }
   
   const btns = options.map(
-    o => <button key={o} name={o} className="btn btn-light m-1" onClick={formatted}>{o}</button>
+    (o, key) => <button key={o.name} name={o.name} value={key} className={classnames("btn m-1",{"btn-dark":o.toggle},{"btn-light":!o.toggle})} aria-pressed={o.toggle} onClick={formatted}>{o.name}</button>
   )
   return (
       <div className="d-flex flex-wrap">

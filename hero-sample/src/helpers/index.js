@@ -1,4 +1,4 @@
-
+/* data-card.helper */
 /**
  * 
  * @param {*} d 
@@ -23,27 +23,8 @@ export const availableTags = ( s = []) => {
     {...o, [key]:incrementKey(key, o)}
   ), {});
 }
-/**
- * support memoization with a hash, note that this approach returns
- * an object with the updated hash and result
- * bleh...
- * @param {*} tag 
- * @param {*} hash
- * @return {
- *  {Array} result,
- *  {Object} hash
- * }
- */
-export const filterByTag = (tag = '', source = [], hash = {}) =>{
-  if(hash.hasOwnProperty(tag)){
-    return hash[tag];
-  }
-  const result = '';
-  return {
-    hash:{...hash, [tag]:result},
-    result
-  }
-}
+
+/** container.helper */
 /**
  * Take an array of objects each presumed to contain tags property
  * 
@@ -57,22 +38,46 @@ export const getAvailableTags = ( data = []) => {
   ),{}));
 }
 
-export const filteredCards = (activeKeys = [], cards = []) => {
+export const filterCardsByTags = (activeKeys = [], cards = []) => {
   //cards are filtered out if any of the keys don't match
-  return cards.filter( c => {
-      const strings = c.tags.join();
-      //activeKeys is likely to be smaller than iterating through all tags
-      
-      //reduce supports AND query
-      return activeKeys.reduce((o, key ) => {
-        
-        return strings.includes(key)
-      }, false )
-
-})
+  return cards.filter( c => (activeKeys.every( o => c.tags.includes(o))));
 }
 
-export const setActiveTags = (activeKeys = '', tags = []) => {
-  
-  return tags;
+/** filter.helper */
+export const createToggleTree = ( keys = [], toggle = false) => {
+  //using set to exclude duplicate keywords, shouldn't happen but one less headache
+  const dedupe = Array.from(new Set(keys));
+  return dedupe.reduce( (out, o) => ( [...out, {name:o, toggle}]),[])
+}
+
+/**
+ * support memoization with a hash, note that this approach returns
+ * an object with the updated hash and result
+ * bleh...
+ * @param {*} tag 
+ * @param {*} hash
+ * @return {
+ *  {Array} result,
+ *  {Object} hash
+ * }
+ */
+export const toggleElement = (idx = -1, source = []) =>{
+  if(idx >= 0 && source[idx] !== undefined){
+    source[idx] = {...source[idx], toggle:(!source[idx].toggle)};
+  }
+  return source;
+}
+/**
+ * return an array of keyword strings 
+ */
+export const filterByToggleState = (state = false, source = []) => {
+  //could also use reduce to generate a clean array of strings..
+  //return source.filter(o => o.toggle === state );
+  return source.reduce( (out, o) => {
+      if(o.toggle === state){ 
+        return [...out, o.name];
+      }
+      return out; 
+    },
+    []);
 }

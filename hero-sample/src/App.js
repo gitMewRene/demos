@@ -4,7 +4,7 @@ import './App.css';
 
 import 'bootstrap/dist/css/bootstrap.css';
 import ResponsiveFilter from './components/filter';
-import {getAvailableTags, filteredCards, setActiveTags} from './helpers/';
+import {getAvailableTags, filterCardsByTags} from './helpers/';
 import DataCard from './components/data-card';
 import Front from './layout/card-front';
 import Back from './layout/card-back';
@@ -18,8 +18,9 @@ class App extends Component {
     this.state = {
       // objects and switching to arrays,
       //had originally thought about using a counter to prioritize keyword order
-      filterOptions:[],
+      tags:[],
       cardList:[],
+      cards:[]
     }
   }
 
@@ -38,44 +39,31 @@ class App extends Component {
         const tags = getAvailableTags(i.cards);
         this.setState({ 
           cardList:i.cards,
-          cards:i.cards,//could make you a class prop
+          cards:[...i.cards],//could make you a class prop
           //removes the counts this way but quick and dirty
           tags,
-          
-          filterOptions:tags
         })
       })
       .catch(e => console.warn("OOPS->" + e));
 
   }
 }
-
+  //get a new array of tags to filter against
   onFilterUpdate = event => {
-    if(event.value){
-
-    console.log(event)
-      //is event.value already in the list
-      const updatedList = this.state.filterOptions.filter(
-         o => (
-           o !== event.value
-         )
-      )
-      if(updatedList.length === this.state.filterOptions.length){
-        console.log('filter action did not change list length');
-      }
-      console.log('updated list' + updatedList)
-      const result = filteredCards(updatedList, this.state.cards)
-      //might want an additional prop to indicate selected state
+    if(event instanceof Array && event.length > 0){
+      console.log('value' + event)
       this.setState({
-        cardList:result,
-        filterOptions:updatedList});
+        cardList:filterCardsByTags(event, this.state.cards)
+      })
+    }else{
+      this.setState({cardList:[...this.state.cards]});
     }
   }
-
+  
   render() {
     return (
       <div className="App container-fluid">
-        <ResponsiveFilter onChange={this.onFilterUpdate} options={this.state.filterOptions}/>
+        <ResponsiveFilter onChange={this.onFilterUpdate} options={this.state.tags}/>
         <div className="d-flex flex-wrap">
           {
             (this.state.cardList.length > 0)?
@@ -85,7 +73,7 @@ class App extends Component {
                       <Back {...o} key="back"/>
                     </DataCard>
             ):
-            <div className="loading"> One Moment.. </div>
+            <div className="loading"> One Moment.. Or...Unselect a filter to see more.. </div>
           }
         </div>
 
