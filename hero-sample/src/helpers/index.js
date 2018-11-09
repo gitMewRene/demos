@@ -19,13 +19,14 @@ export const incrementKey = (k, s = {} ) => {
  */
 export const availableTags = ( s = []) => {
   return s.reduce((o, key) => (
-    //tally keys as a possible ordering option
+    //tally keys as a possible ordering option?
     {...o, [key]:incrementKey(key, o)}
   ), {});
 }
 /**
  * support memoization with a hash, note that this approach returns
  * an object with the updated hash and result
+ * bleh...
  * @param {*} tag 
  * @param {*} hash
  * @return {
@@ -49,12 +50,15 @@ export const filterByTag = (tag = '', source = [], hash = {}) =>{
  * @param {*} data 
  */
 export const getAvailableTags = ( data = []) => {
-  return data.reduce(( o, key) => (
+  //reducing to object means not having to splice
+  //but outputting the keys array means you blow out the indexes in aavailableTags..
+  return Object.keys(data.reduce(( o, key) => (
     {...o, ...availableTags(key.tags)}
-  ),{});
+  ),{}));
 }
 
 export const filteredCards = (activeKeys = [], cards = []) => {
+  //cards are filtered out if any of the keys don't match
   return cards.filter( c => {
       const strings = c.tags.join();
       //activeKeys is likely to be smaller than iterating through all tags

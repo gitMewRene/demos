@@ -9,7 +9,7 @@ const FilterDesktop = ({options, onChange}) => {
     });
   }
   
-  const btns = Object.keys(options).map(
+  const btns = options.map(
     o => <button key={o} name={o} className="btn btn-light m-1" onClick={formatted}>{o}</button>
   )
   return (
@@ -19,7 +19,7 @@ const FilterDesktop = ({options, onChange}) => {
   );
 }
 FilterDesktop.propTypes = {
-  options:PropTypes.object,
+  options:PropTypes.array,
   onChange:PropTypes.func
 
 };

@@ -15,13 +15,13 @@ const ResponsiveFilter = ({onChange, mobile, options}) => {
 }
 ResponsiveFilter.propTypes = {
   mobile:PropTypes.bool,
-  options:PropTypes.object,
+  options:PropTypes.array,
   onChange:PropTypes.func
 };
 
 ResponsiveFilter.defaultProps = {
   onChange:()=>{},
-  options:{},
+  options:[],
   mobile:false
 }
 export default ResponsiveFilter

@@ -16,7 +16,9 @@ class App extends Component {
   constructor(props){
     super(props);
     this.state = {
-      filterOptions:{},
+      // objects and switching to arrays,
+      //had originally thought about using a counter to prioritize keyword order
+      filterOptions:[],
       cardList:[],
     }
   }
@@ -53,17 +55,20 @@ class App extends Component {
 
     console.log(event)
       //is event.value already in the list
-      const updatedList = Object.keys(this.state.filterOptions).filter(
+      const updatedList = this.state.filterOptions.filter(
          o => (
            o !== event.value
          )
       )
+      if(updatedList.length === this.state.filterOptions.length){
+        console.log('filter action did not change list length');
+      }
       console.log('updated list' + updatedList)
-      const result = filteredCards(event.value, this.state.cards)
+      const result = filteredCards(updatedList, this.state.cards)
       //might want an additional prop to indicate selected state
       this.setState({
         cardList:result,
-        filterOptions:setActiveTags(event.value, this.state.tags)});
+        filterOptions:updatedList});
     }
   }
 
