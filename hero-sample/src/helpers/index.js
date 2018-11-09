@@ -81,3 +81,10 @@ export const filterByToggleState = (state = false, source = []) => {
     },
     []);
 }
+
+export const isSelected = (q = {}) => {
+  if(q.hasOwnProperty('toggle')){
+    return q.toggle === true;
+  }
+  return false;
+}

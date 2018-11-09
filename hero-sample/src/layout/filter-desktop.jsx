@@ -11,7 +11,7 @@ const FilterDesktop = ({options, onChange}) => {
   }
   
   const btns = options.map(
-    (o, key) => <button key={o.name} name={o.name} value={key} className={classnames("btn m-1",{"btn-dark":o.toggle},{"btn-light":!o.toggle})} aria-pressed={o.toggle} onClick={formatted}>{o.name}</button>
+    (o, key) => <button key={o.name} name={o.name} value={key} className={classnames("btn m-1 border border-dark rounded-0",{"btn-dark":o.toggle},{"btn-light":!o.toggle})} aria-pressed={o.toggle} onClick={formatted}>{o.name}</button>
   )
   return (
       <div className="d-flex flex-wrap">

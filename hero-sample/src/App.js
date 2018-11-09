@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import './App.css';
-
 import 'bootstrap/dist/css/bootstrap.css';
 import ResponsiveFilter from './components/filter';
 import {getAvailableTags, filterCardsByTags} from './helpers/';
@@ -63,7 +62,10 @@ class App extends Component {
   render() {
     return (
       <div className="App container-fluid">
+      <div className="row">
         <ResponsiveFilter onChange={this.onFilterUpdate} options={this.state.tags}/>
+      </div>
+      <div className="container-fluid">
         <div className="d-flex flex-wrap">
           {
             (this.state.cardList.length > 0)?
@@ -76,7 +78,7 @@ class App extends Component {
             <div className="loading"> One Moment.. Or...Unselect a filter to see more.. </div>
           }
         </div>
-
+  </div>
       </div>
     );
   }

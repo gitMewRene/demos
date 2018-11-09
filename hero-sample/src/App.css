@@ -119,9 +119,7 @@
 	-webkit-transform: rotateY(0);
 	transform: rotateY(0);
 }
-
-
-
-
-
-
+.dropdown option:selected{
+  background: #282c34;
+  color:white;
+}
