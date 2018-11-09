@@ -69,7 +69,6 @@
 }
 .flex-item {
 	min-height: 430px !important;
-	padding: 0;
 	width: 100%;
 	position: relative;
 }
